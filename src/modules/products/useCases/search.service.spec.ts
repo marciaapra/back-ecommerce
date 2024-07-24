@@ -53,5 +53,17 @@ describe('SearchService', () => {
 
       expect(products).toEqual(productsListMock);
     });
+
+    it('should return an array of all products when search is empty', async () => {
+      jest.spyOn(productModel, 'find').mockReturnValue({
+        exec: jest.fn().mockResolvedValueOnce(productsListMock),
+      } as unknown as Query<ProductDocument[], ProductDocument>);
+
+      const params = { search: '' };
+
+      const products = await searchService.exec(params);
+
+      expect(products).toEqual(productsListMock);
+    });
   });
 });
