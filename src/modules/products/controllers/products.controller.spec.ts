@@ -4,19 +4,10 @@ import { FindAllService } from '../useCases/findAll.service';
 import { SearchService } from '../useCases/search.service';
 
 import { ProductsController } from './products.controller';
+import { productsListMock } from '../mocks/product.mock';
 
 describe('ProductsController', () => {
   let productsController: ProductsController;
-
-  const productsListMock = [
-    {
-      name: 'Hidratante',
-      price: 30,
-      score: 4.5,
-      image: '',
-      description: 'Hidratante facial',
-    },
-  ];
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({

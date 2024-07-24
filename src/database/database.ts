@@ -3,12 +3,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 export class DBConnection {
   static connect = (): DynamicModule => {
-    const dbUser = process.env.DB_USER;
-    const dbPassword = process.env.DB_PASSWORD;
-    const dbName = process.env.DB_NAME;
-    const dbAppName = process.env.DB_APP_NAME;
+    const { DB_USER, DB_PASSWORD, DB_NAME, DB_APP_NAME } = process.env;
 
-    const url = `mongodb+srv://${dbUser}:${dbPassword}@clusterproject.z9qmktj.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=${dbAppName}`;
+    const url = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@clusterproject.z9qmktj.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=${DB_APP_NAME}`;
 
     return MongooseModule.forRoot(url);
   };

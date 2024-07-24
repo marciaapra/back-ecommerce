@@ -6,20 +6,11 @@ import { getModelToken } from '@nestjs/mongoose';
 
 import { FindAllService } from '../useCases/findAll.service';
 import { ProductDocument } from '../schemas/products.schema';
+import { productsListMock } from '../mocks/product.mock';
 
 describe('FindAllService', () => {
   let findAllService: FindAllService;
   let productModel: Model<ProductDocument>;
-
-  const productsListMock = [
-    {
-      name: 'Hidratante',
-      price: 30,
-      score: 4.5,
-      image: '',
-      description: 'Hidratante facial',
-    },
-  ];
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
