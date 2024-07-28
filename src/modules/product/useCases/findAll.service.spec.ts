@@ -3,6 +3,7 @@ import { Product } from '../entities/product.entity';
 import { Repository } from 'typeorm';
 import { FindAllService } from './findAll.service';
 import { productsListMock } from 'src/mocks/product.mock';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('FindAllService', () => {
   let findAllService: FindAllService;
@@ -13,7 +14,7 @@ describe('FindAllService', () => {
       providers: [
         FindAllService,
         {
-          provide: Repository,
+          provide: getRepositoryToken(Product),
           useValue: {
             find: jest.fn(),
           },
@@ -22,7 +23,9 @@ describe('FindAllService', () => {
     }).compile();
 
     findAllService = module.get<FindAllService>(FindAllService);
-    productRepository = module.get<Repository<Product>>(Repository);
+    productRepository = module.get<Repository<Product>>(
+      getRepositoryToken(Product),
+    );
   });
 
   it('should return an array of all products', async () => {
