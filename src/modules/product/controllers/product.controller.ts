@@ -1,16 +1,16 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 
-import { Product } from '../schemas/products.schema';
+import { Product } from '../entities/product.entity';
 
 import { SearchDTO } from '../dtos/search.dto';
 
 import { FindAllService } from '../useCases/findAll.service';
 import { SearchService } from '../useCases/search.service';
 
-@Controller('products')
+@Controller('product')
 @ApiTags('Produtos')
-export class ProductsController {
+export class ProductController {
   constructor(
     private findAllService: FindAllService,
     private searchService: SearchService,

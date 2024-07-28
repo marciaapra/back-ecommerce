@@ -3,15 +3,15 @@ import { Test } from '@nestjs/testing';
 import { FindAllService } from '../useCases/findAll.service';
 import { SearchService } from '../useCases/search.service';
 
-import { ProductsController } from './products.controller';
-import { productsListMock } from '../mocks/product.mock';
+import { ProductController } from './product.controller';
+import { productsListMock } from '../../../mocks/product.mock';
 
-describe('ProductsController', () => {
-  let productsController: ProductsController;
+describe('ProductController', () => {
+  let productsController: ProductController;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      controllers: [ProductsController],
+      controllers: [ProductController],
       providers: [
         {
           provide: FindAllService,
@@ -28,7 +28,7 @@ describe('ProductsController', () => {
       ],
     }).compile();
 
-    productsController = moduleRef.get<ProductsController>(ProductsController);
+    productsController = moduleRef.get<ProductController>(ProductController);
   });
 
   describe('findAll', () => {

@@ -11,6 +11,6 @@ async function bootstrap() {
 
   Swagger.setup(app);
 
-  await app.listen(APP_PORT);
+  await app.listen(APP_PORT || 3001);
 }
 bootstrap();
