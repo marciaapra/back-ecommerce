@@ -3,6 +3,7 @@ import { SearchService } from './search.service';
 import { Product } from '../entities/product.entity';
 import { Repository } from 'typeorm';
 import { productsListMock } from 'src/mocks/product.mock';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('SearchService', () => {
   let searchService: SearchService;
@@ -13,7 +14,7 @@ describe('SearchService', () => {
       providers: [
         SearchService,
         {
-          provide: Repository,
+          provide: getRepositoryToken(Product),
           useValue: {
             find: jest.fn(),
           },
@@ -22,7 +23,9 @@ describe('SearchService', () => {
     }).compile();
 
     searchService = module.get<SearchService>(SearchService);
-    productRepository = module.get<Repository<Product>>(Repository);
+    productRepository = module.get<Repository<Product>>(
+      getRepositoryToken(Product),
+    );
   });
 
   it('should return all products when search is empty', async () => {

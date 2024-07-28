@@ -32,22 +32,25 @@ export class CartController {
   ) {}
 
   @Post()
-  @ApiOperation({ summary: 'Listagem de produtos' })
+  @ApiOperation({ summary: 'Criar um carrinho de compras' })
   async create(@Body() createCart: CreateCartDTO): Promise<Cart> {
     return this.createService.exec(createCart);
   }
 
   @Get('/:id')
+  @ApiOperation({ summary: 'Buscar um carrinho de compras por id' })
   async getCart(@Param('id') id: string) {
     return this.findByIdService.exec(id);
   }
 
   @Post('/:id/item')
+  @ApiOperation({ summary: 'Adicionar item no carrinho' })
   async addItem(@Param('id') id: string, @Body() item: AddItemDTO) {
     return this.addItemService.exec(id, item);
   }
 
   @Patch('/:id/item/:idItem')
+  @ApiOperation({ summary: 'Atualizar item do carrinho' })
   async updateItem(
     @Param('id') id: string,
     @Param('idItem') idItem: string,
@@ -57,6 +60,7 @@ export class CartController {
   }
 
   @Delete('/:id/item/:idItem')
+  @ApiOperation({ summary: 'Remover um item do carrinho' })
   async removeItem(@Param('id') id: string, @Param('idItem') idItem: string) {
     return this.removeItemService.exec(id, idItem);
   }

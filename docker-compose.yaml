@@ -6,7 +6,7 @@ services:
     ports:
       - '${APP_PORT}:${APP_PORT}'
     environment:
-      - PORT=3001
+      - PORT=${APP_PORT}
     volumes:
       - ./src:/app/src
   mysql_db:
