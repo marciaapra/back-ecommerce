@@ -27,13 +27,21 @@ export class CreateService {
 
       if (!product) throw new NotFoundException(`Product not found`);
 
-      this.cartItemRepository.save({ ...item, cart: newCart });
+      await this.cartItemRepository.save({ ...item, cart: newCart });
     });
 
     try {
       await Promise.all(items);
-      return newCart;
+      return this.cartRepository.findOne({
+        where: { id: newCart.id },
+      });
     } catch (error) {
+      await this.cartRepository
+        .createQueryBuilder()
+        .delete()
+        .from(Cart)
+        .where('id = :id', { id: newCart.id })
+        .execute();
       throw error;
     }
   }
