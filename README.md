@@ -4,7 +4,7 @@ API para ecommerce com NestJS e banco de dados MySQL. Este projeto está configu
 
 ## Documentação
 
-**Swagger:** [demo](https://18.189.171.211:3002/api/docs)
+**Swagger:** [demo](http://18.189.171.211:3002/api/docs)
 
 ## Configurações e download
 
